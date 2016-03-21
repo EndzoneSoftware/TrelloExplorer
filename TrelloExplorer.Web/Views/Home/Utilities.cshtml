@@ -1,0 +1,244 @@
+﻿@{
+    Layout = "../Shared/_Layout.cshtml";
+    ViewBag.Title = "Trello Utilities";
+}
+
+@section Head {
+    <style>
+        pre {
+            overflow-x: hidden;
+            white-space: pre-wrap;
+        }
+        .blockquote {
+            font-size: 1em;
+        }
+    </style>
+}
+
+<main class="container">
+    <div class="row">
+        <div class="col-sm-12 m-y-2">
+            <h1>
+                Trello Explorer
+                <small class="text-muted">made by <a href="http://endzone.io">endzone.io</a></small>
+            </h1>
+        </div>
+    </div>
+
+    <div ng-controller="utilitiesController">
+        <div class="row" ng-show="loading">
+            <div class="col-sm-12 text-xs-center">
+                <i class="fa fa-spinner fa-pulse fa-5x"></i>
+            </div>
+        </div>
+
+        <div class="row m-t-2" ng-cloak>
+            <div class="col-sm-12">
+                <h4>Boards</h4>
+                <table class="table table-sm">
+                    <thead class="thead-default">
+                        <tr>
+                            <td>Id</td>
+                            <td>Name</td>
+                            <td>Last Activity</td>
+                            <td></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="board in boards | orderBy:'-dateLastActivity'">
+                            <td>{{board.id}}</td>
+                            <td><a ng-href="{{board.url}}">{{board.name}}</a></td>
+                            <td>{{board.dateLastActivity | date}}</td>
+                            <td><button type="button" class="btn btn-secondary-outline btn-sm" ng-click="viewJson(board)" title="View JSON"><i class="fa fa-code"></i></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="row m-t-2" ng-cloak>
+            <div class="col-sm-12">
+                <h4>Lists</h4>
+                <fieldset class="form-group">
+                    <label for="listsBoardSelect">Select a board</label>
+                    <select class="form-control" id="listsBoardSelect" ng-model="listsBoardId">
+                        <option value="">---Please select---</option>
+                        <option ng-repeat="board in boards | orderBy:'-dateLastActivity'" value="{{board.id}}">
+                            {{board.name}}
+                        </option>
+                    </select>
+                </fieldset>
+                <table class="table table-sm">
+                    <thead class="thead-default">
+                        <tr>
+                            <td>Id</td>
+                            <td>Name</td>
+                            <td></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="list in lists| orderBy:'pos'">
+                            <td>{{list.id}}</td>
+                            <td>{{list.name}}</td>
+                            <td><button type="button" class="btn btn-secondary-outline btn-sm" ng-click="viewJson(list)" title="View JSON"><i class="fa fa-code"></i></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="row m-t-2" ng-cloak>
+            <div class="col-sm-12">
+                <h4>Labels</h4>
+                <fieldset class="form-group">
+                    <label for="labelsBoardSelect">Select a board</label>
+                    <select class="form-control" id="labelsBoardSelect" ng-model="labelsBoardId">
+                        <option value="">---Please select---</option>
+                        <option ng-repeat="board in boards | orderBy:'-dateLastActivity'" value="{{board.id}}">
+                            {{board.name}}
+                        </option>
+                    </select>
+                </fieldset>
+                <table class="table table-sm">
+                    <thead class="thead-default">
+                        <tr>
+                            <td>Id</td>
+                            <td>Colour</td>
+                            <td>Name</td>
+                            <td></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="label in labels| orderBy:'pos'">
+                            <td>{{label.id}}</td>
+                            <td>
+                                <div style="width: 40px; background-color: {{label.color}}; border: 2px solid black; ">&nbsp;</div>
+                            </td>
+                            <td>{{label.name}}</td>
+                            <td><button type="button" class="btn btn-secondary-outline btn-sm" ng-click="viewJson(label)" title="View JSON"><i class="fa fa-code"></i></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="row m-t-2" ng-cloak>
+            <div class="col-sm-12">
+                <h4>Cards</h4>
+                <fieldset class="form-group">
+                    <label for="cardsBoardSelect">Select a board</label>
+                    <select class="form-control" id="cardsBoardSelect" ng-model="cardsBoardId">
+                        <option value="">---Please select---</option>
+                        <option ng-repeat="board in boards | orderBy:'-dateLastActivity'" value="{{board.id}}">
+                            {{board.name}}
+                        </option>
+                    </select>
+                </fieldset>
+                <table class="table table-sm">
+                    <thead class="thead-default">
+                        <tr>
+                            <td>Id</td>
+                            <td>Name</td>
+                            <td>Desc</td>
+                            <td></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="card in cards">
+                            <td>{{card.id}}</td>
+                            <td>{{card.name}}</td>
+                            <td ng-bind-html="card.desc | markdown"></td>
+                            <td><button type="button" class="btn btn-secondary-outline btn-sm" ng-click="viewJson(card)" title="View JSON"><i class="fa fa-code"></i></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+@section BodyScripts
+{
+    <script src="~/Scripts/trello.interactiveAuth.js"></script>
+    <script>
+        app.controller("utilitiesController", [
+            '$scope', '$rootScope', function ($scope, $rootScope) {
+                $scope.loading = false;
+
+                Trello.get("/members/me/boards", trelloSuccess, trelloError).then(function (boards) {
+                    $scope.boards = boards;
+                    $scope.$apply();
+                });
+
+                $scope.viewJson = function (object) {
+                    $rootScope.$broadcast("viewJson", object);
+                }
+
+                $scope.$watch("listsBoardId", function (boardId) {
+                    if (boardId) {
+                        Trello.get("/boards/" + boardId + "/lists", trelloSuccess, trelloError).then(function (lists) {
+                            $scope.lists = lists;
+                            $scope.$apply();
+                        });
+                    } else {
+                        $scope.lists = [];
+                    }
+                });
+
+                $scope.$watch("labelsBoardId", function (boardId) {
+                    if (boardId) {
+                        Trello.get("/boards/" + boardId + "/labels", trelloSuccess, trelloError).then(function (labels) {
+                            $scope.labels = labels;
+                            $scope.$apply();
+                        });
+                    } else {
+                        $scope.labels = [];
+                    }
+                });
+
+                $scope.$watch("cardsBoardId", function (boardId) {
+                    if (boardId) {
+                        Trello.get("/boards/" + boardId + "/cards", trelloSuccess, trelloError).then(function (cards) {
+                            $scope.cards = cards;
+                            $scope.$apply();
+                        });
+                    } else {
+                        $scope.cards = [];
+                    }
+                });
+            }
+        ]);
+
+        app.controller("jsonViewerController", [
+            "$scope", function ($scope) {
+                $scope.$on("viewJson", function (event, data) {
+                    $scope.object = data;
+                    $('#jsonView').modal('show');
+                });
+            }
+        ]);
+    </script>
+
+    <!-- Modal -->
+    <div class="modal fade" id="jsonView" tabindex="-1" role="dialog" ng-controller="jsonViewerController">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">JSON viewer</h4>
+                </div>
+                <div class="modal-body">
+                    <pre>
+{{object | json}}
+                    </pre>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>@ViewBag.Title</title>
+
+    <link rel="stylesheet" href="http://v4-alpha.getbootstrap.com/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+    <style>
+        html {
+            font-size: 14px;
+        }
+    </style>
+
+    @RenderSection("Head", false)
+</head>
+<body>
+
+    <nav class="navbar navbar-dark navbar-full bg-primary" role="banner">
+        <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#mainNav">
+            &#9776;
+        </button>
+        <div class="collapse navbar-toggleable-xs" id="mainNav">
+            <ul class="nav navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-item nav-link" href="/home/utilities">Explorer</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+@RenderBody()
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.1.1/js/tether.min.js"></script>
+<script src="https://cdn.rawgit.com/paulmillr/es6-shim/master/es6-shim.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+<script src="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.2/angular.js"></script>
+<script src="https://api.trello.com/1/client.js?key=986e7dc9037a5bbd6f7d29eee45f645e"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/5.0.1/markdown-it.min.js"></script>
+<script src="~/Scripts/helpers.js"></script>
+<script src="~/Scripts/trello.js"></script>
+<script src="~/Scripts/angular.js"></script>
+
+@RenderSection("BodyScripts", false)
+
+</body>
+</html>
