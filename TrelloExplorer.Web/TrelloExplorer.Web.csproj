@@ -107,6 +107,7 @@
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\helpers.js" />
     <Content Include="Scripts\trello.js" />
+    <Content Include="Styles\Theme.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
