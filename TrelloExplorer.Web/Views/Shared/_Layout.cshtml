@@ -27,28 +27,41 @@
         <div class="collapse navbar-toggleable-xs" id="mainNav">
             <ul class="nav navbar-nav">
                 <li class="nav-item">
+                    <a class="nav-item nav-link" href="/home/about">What is this?</a>
                     <a class="nav-item nav-link" href="/home/utilities">Explorer</a>
                 </li>
             </ul>
         </div>
     </nav>
 
-@RenderBody()
+    <main class="container">
 
+        <div class="row">
+            <div class="col-sm-12 m-y-2">
+                <h1>
+                    Trello Explorer
+                    <small class="text-muted">made by <a href="http://endzone.io">endzone.io</a></small>
+                </h1>
+            </div>
+        </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.1.1/js/tether.min.js"></script>
-<script src="https://cdn.rawgit.com/paulmillr/es6-shim/master/es6-shim.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-<script src="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.2/angular.js"></script>
-<script src="https://api.trello.com/1/client.js?key=986e7dc9037a5bbd6f7d29eee45f645e"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/5.0.1/markdown-it.min.js"></script>
-<script src="~/Scripts/helpers.js"></script>
-<script src="~/Scripts/trello.js"></script>
-<script src="~/Scripts/angular.js"></script>
+        @RenderBody()
+        
+    </main>
 
-@RenderSection("BodyScripts", false)
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.1.1/js/tether.min.js"></script>
+        <script src="https://cdn.rawgit.com/paulmillr/es6-shim/master/es6-shim.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+        <script src="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.2/angular.js"></script>
+        <script src="https://api.trello.com/1/client.js?key=986e7dc9037a5bbd6f7d29eee45f645e"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/5.0.1/markdown-it.min.js"></script>
+        <script src="~/Scripts/helpers.js"></script>
+        <script src="~/Scripts/trello.js"></script>
+        <script src="~/Scripts/angular.js"></script>
+
+        @RenderSection("BodyScripts", false)
 
 </body>
 </html>

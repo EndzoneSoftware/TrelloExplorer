@@ -16,14 +16,6 @@
 }
 
 <main class="container">
-    <div class="row">
-        <div class="col-sm-12 m-y-2">
-            <h1>
-                Trello Explorer
-                <small class="text-muted">made by <a href="http://endzone.io">endzone.io</a></small>
-            </h1>
-        </div>
-    </div>
 
     <div ng-controller="utilitiesController">
         <div class="row" ng-show="loading">
@@ -162,6 +154,7 @@
 {
     <script src="~/Scripts/trello.interactiveAuth.js"></script>
     <script>
+
         app.controller("utilitiesController", [
             '$scope', '$rootScope', function ($scope, $rootScope) {
                 $scope.loading = false;
