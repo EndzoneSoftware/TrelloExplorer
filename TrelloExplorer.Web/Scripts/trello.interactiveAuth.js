@@ -6,7 +6,7 @@ Trello.authorize({
 	scope: {
 		read: true
 	},
-	expiration: "never",
+	//expiration: "never",
 	success: authenticationSuccess,
 	error: authenticationFailure
 });
