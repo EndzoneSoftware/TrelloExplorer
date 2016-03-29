@@ -32,3 +32,16 @@ body {
 .footer .container .text-muted {
   margin: 20px 0;
 }
+
+.text-muted.more-muted {
+    color: #ccc;
+    font-size: 0.8em
+}
+
+.text-muted.more-muted a {
+    
+}
+
+.page-header .text-muted.more-muted {
+    float: right;
+}
