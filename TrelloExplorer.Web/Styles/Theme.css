@@ -23,14 +23,18 @@ body {
 }
 
 .footer .container {
-  width: auto;
-  max-width: 680px;
+  width: 100%;
   padding: 0 15px;
   text-align: right;
-  float: right
 }
-.footer .container .text-muted {
+    .footer .container .us {
+  float: right
+    }
+.footer .container p {
   margin: 20px 0;
+}
+.footer .container div {
+ margin-top: 12px
 }
 
 .text-muted.more-muted {
@@ -44,4 +48,15 @@ body {
 
 .page-header .text-muted.more-muted {
     float: right;
+}
+
+footer .share-buttons {
+    float: left;
+}
+.share-buttons img {
+    width: 35px;
+    padding: 5px;
+    border: 0;
+    box-shadow: 0;
+    display: inline;
 }

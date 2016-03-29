@@ -30,7 +30,24 @@
                         </div>
                         <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                             <div class="panel-body">
-                                Uses the Trello API to show all your Boards, Lists, Labels and Cards and an easy way to view the JSON for each.   
+                                Uses the Trello API to show all your Boards, Lists, Labels and Cards and an easy way to view the JSON for each.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="share">
+                            <h4 class="panel-title">
+                                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#share" aria-expanded="true" aria-controls="collapseOne">
+                                    Please share!
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="share">
+                            <div class="panel-body">
+                                We hope you like this and find it useful enough to share!
+
+                                @Html.Partial("ShareIcons")
+
                             </div>
                         </div>
                     </div>

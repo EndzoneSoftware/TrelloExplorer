@@ -104,6 +104,21 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="imgs\share_icons\buffer.png" />
+    <Content Include="imgs\share_icons\diggit.png" />
+    <Content Include="imgs\share_icons\email.png" />
+    <Content Include="imgs\share_icons\facebook.png" />
+    <Content Include="imgs\share_icons\flattr.png" />
+    <Content Include="imgs\share_icons\google.png" />
+    <Content Include="imgs\share_icons\linkedin.png" />
+    <Content Include="imgs\share_icons\pinterest.png" />
+    <Content Include="imgs\share_icons\print.png" />
+    <Content Include="imgs\share_icons\reddit.png" />
+    <Content Include="imgs\share_icons\stumbleupon.png" />
+    <Content Include="imgs\share_icons\tumblr.png" />
+    <Content Include="imgs\share_icons\twitter.png" />
+    <Content Include="imgs\share_icons\vk.png" />
+    <Content Include="imgs\share_icons\yummly.png" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\helpers.js" />
     <Content Include="Scripts\trello.js" />
@@ -130,6 +145,8 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\trello.interactiveAuth.js" />
     <Content Include="Views\Home\about.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\ShareIcons.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
