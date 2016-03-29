@@ -10,9 +10,21 @@ namespace TrelloExplorer.Web
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "Root",
+                url: "",
+                defaults: new { controller = "Home", action = "Utilities", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "About",
+                url: "about",
+                defaults: new { controller = "Home", action = "About", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Utilities", id = UrlParameter.Optional }
+                defaults: new { controller = "Home", action = "About", id = UrlParameter.Optional }
             );
         }
     }
