@@ -60,3 +60,15 @@ footer .share-buttons {
     box-shadow: 0;
     display: inline;
 }
+
+.ng-hide {
+    display: none;
+}
+
+fieldset {
+     padding: 10px;
+}
+
+.nav-tabs li.tab-right {
+    float: right;
+}

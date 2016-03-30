@@ -143,7 +143,6 @@
     <Content Include="packages.config" />
     <Content Include="Views\Home\Utilities.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Scripts\trello.interactiveAuth.js" />
     <Content Include="Views\Home\about.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\ShareIcons.cshtml" />
